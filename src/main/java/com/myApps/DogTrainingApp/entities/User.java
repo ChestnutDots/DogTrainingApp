@@ -77,6 +77,6 @@ public class User {
 
         dogs.add(tempDog);
 
-        tempDog.setOwner(this);
+        tempDog.setUser(this);
     }
 }

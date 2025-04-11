@@ -17,8 +17,9 @@ public class Dog {
     @Column(name="name")
     private String name;
 
-    @Column(name="owner")
-    private User owner;
+    @ManyToOne
+    @JoinColumn(name="user_id")
+    private User user;
 
     @OneToMany(mappedBy="dog",
                 fetch=FetchType.LAZY,
@@ -32,7 +33,7 @@ public class Dog {
 
     public Dog(String name, User owner){
         this.name=name;
-        this.owner=owner;
+        this.user =owner;
     }
 
     public int getId() {
@@ -51,12 +52,12 @@ public class Dog {
         this.name = name;
     }
 
-    public User getOwner() {
-        return owner;
+    public User getUser() {
+        return user;
     }
 
-    public void setOwner(User owner) {
-        this.owner = owner;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public List<TrainingSession> getTrainingSessionList() {

@@ -17,15 +17,23 @@ public class TrainingSession {
     @Column(name="date")
     private LocalDate date;
 
+    @ManyToOne
+    @JoinColumn(name="dog_id")
+    private Dog dog;
+
+    @Column(name="command")
+    private String command;
+
     @Column(name="progress")
-    private Map<String, int[]> progress;
+    private double progress;
 
     public TrainingSession(){
 
     }
 
-    public TrainingSession(LocalDate date){
+    public TrainingSession(LocalDate date, Dog dog){
         this.date=date;
+        this.dog=dog;
     }
 
     public int getId() {
@@ -36,14 +44,6 @@ public class TrainingSession {
         this.id = id;
     }
 
-    public Map<String, int[]> getProgress() {
-        return progress;
-    }
-
-    public void setProgress(Map<String, int[]> progress) {
-        this.progress = progress;
-    }
-
     public LocalDate getDate() {
         return date;
     }
@@ -51,4 +51,30 @@ public class TrainingSession {
     public void setDate(LocalDate date) {
         this.date = date;
     }
+
+    public Dog getDog() {
+        return dog;
+    }
+
+    public void setDog(Dog dog) {
+        this.dog = dog;
+    }
+
+    public String getCommand() {
+        return command;
+    }
+
+    public void setCommand(String command) {
+        this.command = command;
+    }
+
+    public double getProgress() {
+        return progress;
+    }
+
+    public void setProgress(double progress) {
+        this.progress = progress;
+    }
+
+
 }

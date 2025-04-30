@@ -31,7 +31,7 @@ public class TrainingSession {
 
     }
 
-    public TrainingSession(LocalDate date, Dog dog){
+    public TrainingSession(LocalDate date, Dog dog, User user){
         this.date=date;
         this.dog=dog;
     }

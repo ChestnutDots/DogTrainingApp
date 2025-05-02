@@ -5,6 +5,8 @@ import com.myApps.DogTrainingApp.entities.Dog;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class DogServiceImplementation implements DogService{
 
@@ -17,5 +19,10 @@ public class DogServiceImplementation implements DogService{
 
     public Dog save(Dog theDog){
         return dogRepository.save(theDog);
+    }
+
+    @Override
+    public List<Dog> findAll() {
+        return dogRepository.findAll();
     }
 }

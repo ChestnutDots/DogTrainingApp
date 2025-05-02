@@ -16,6 +16,12 @@
      class="btn btn-info btn-sm mb-3">
     Add Dog Profile
   </a>
+  <table class="table table-hover"></table>
+  <tbody>
+  <tr th:each="tempDog: ${dogs}">
+    <td th:text="${tempDog.name}"/>
+  </tr>
+  </tbody>
 
 </div>
 

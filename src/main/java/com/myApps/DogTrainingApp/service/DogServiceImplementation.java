@@ -2,6 +2,7 @@ package com.myApps.DogTrainingApp.service;
 
 import com.myApps.DogTrainingApp.dao.DogRepository;
 import com.myApps.DogTrainingApp.entities.Dog;
+import com.myApps.DogTrainingApp.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +23,8 @@ public class DogServiceImplementation implements DogService{
     }
 
     @Override
-    public List<Dog> findAll() {
-        return dogRepository.findAll();
+    public List<Dog> findAllByUser(User theUser) {
+        return dogRepository.findAllByUser(theUser);
     }
+
 }

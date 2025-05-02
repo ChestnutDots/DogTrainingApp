@@ -3,6 +3,7 @@ package com.myApps.DogTrainingApp.controller;
 import com.myApps.DogTrainingApp.controllers.DogController;
 import com.myApps.DogTrainingApp.entities.Dog;
 import com.myApps.DogTrainingApp.service.DogService;
+import com.myApps.DogTrainingApp.service.UserService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -23,6 +24,9 @@ public class DogControllerTest {
 
     @MockBean
     private DogService dogService;
+
+    @MockBean
+    private UserService userService;
 
     @Test
     void addDogProfilePageShouldLoad() throws Exception{

@@ -2,7 +2,9 @@ package com.myApps.DogTrainingApp.controller;
 
 
 import com.myApps.DogTrainingApp.controllers.UserController;
+import com.myApps.DogTrainingApp.entities.User;
 import com.myApps.DogTrainingApp.service.DogService;
+import com.myApps.DogTrainingApp.service.UserService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -27,10 +29,13 @@ public class UserControllerTest {
     @MockBean
     DogService dogService;
 
+    @MockBean
+    UserService userService;
+
     @Test
     public void mainPageLoads() throws Exception{
 
-        when(dogService.findAll()).thenReturn(Collections.emptyList());
+        when(dogService.findAllByUser(new User())).thenReturn(Collections.emptyList());
 
         mockMvc.perform(get("/main"))
                 .andExpect(status().isOk())
@@ -38,6 +43,14 @@ public class UserControllerTest {
                 .andExpect(content().string(containsString("Add Dog Profile")))
                 .andExpect(model().attributeExists("dogs"));
 
+    }
+
+    @Test
+    public void addUserSuccessfully() throws Exception{
+
+        mockMvc.perform(get("/addUser"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("user-registration-form"));
     }
 
 

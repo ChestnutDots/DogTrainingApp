@@ -17,6 +17,9 @@ public class Dog {
     @Column(name="name")
     private String name;
 
+    @Column(name="age")
+    private int age;
+
     @ManyToOne
     @JoinColumn(name="user_id")
     private User user;
@@ -31,9 +34,10 @@ public class Dog {
 
     }
 
-    public Dog(String name, User owner){
+    public Dog(String name, User owner, int age){
         this.name=name;
         this.user =owner;
+        this.age=age;
     }
 
     public int getId() {
@@ -50,6 +54,14 @@ public class Dog {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
     }
 
     public User getUser() {

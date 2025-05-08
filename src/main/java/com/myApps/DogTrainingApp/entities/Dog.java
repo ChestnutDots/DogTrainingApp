@@ -17,6 +17,9 @@ public class Dog {
     @Column(name="name")
     private String name;
 
+    @Column(name="breed")
+    private String breed;
+
     @Column(name="age")
     private int age;
 
@@ -34,10 +37,11 @@ public class Dog {
 
     }
 
-    public Dog(String name, User owner, int age){
+    public Dog(String name, User owner, int age, String breed){
         this.name=name;
         this.user =owner;
         this.age=age;
+        this.breed=breed;
     }
 
     public int getId() {
@@ -62,6 +66,14 @@ public class Dog {
 
     public void setAge(int age) {
         this.age = age;
+    }
+
+    public String getBreed() {
+        return breed;
+    }
+
+    public void setBreed(String breed) {
+        this.breed = breed;
     }
 
     public User getUser() {

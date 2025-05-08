@@ -57,7 +57,7 @@ public class UserControllerTest {
     @Test
     public void openDogProfile() throws Exception{
 
-        Dog mockDog = new Dog("Fido", new User(), 3);
+        Dog mockDog = new Dog("Fido", new User(), 3, "Pug");
         when(dogService.findById(1)).thenReturn(mockDog);
         mockMvc.perform(get("/showDogProfile")
                 .param("dogId","1"))

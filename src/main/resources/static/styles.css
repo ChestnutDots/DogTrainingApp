@@ -28,26 +28,48 @@ body.bg-4{
 Navigation Bar
  */
 .navbar.bg-nav{
-    background-color: rgba(50, 154, 154, 0.4)
-    /*#EDC453;
-
-     */
+    background-color: rgba(50, 154, 154, 0.4);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
 /*
 Card Styles
  */
 .bg-card{
-    /*
-    background-color: #f8e7ba;
-     */
     background-color: rgba(255, 255, 255, 0.3)
 }
 
 /*
 Button Styles
  */
-.btn-default{
+.btn-primary{
+
     background-color: rgba(50, 154, 154, 0.6);
     color: #ecf9f9;
+    border: 1px solid rgba(50, 154, 154, 0.2);
+    outline: none;
+}
+
+.btn-primary:hover
+.btn-primary:active{
+    background-color: rgba(50, 154, 154, 1);
+    color: #ecf9f9;
+    border: 1px solid rgba(50, 154, 154, 0.2);
+    outline: none;
+}
+
+
+.btn-secondary{
+    background-color: rgba(50, 154, 102, 0.6);
+    color: #ecf9f9;
+    border: 1px solid rgba(50, 154, 102, 0.2);
+    outline: none;
+}
+
+.btn-secondary:hover
+.btn-secondary:active{
+    background-color: rgba(50, 154, 102, 1);
+    color: #ecf9f9;
+    border: 1px solid rgba(50, 154, 102, 0.2);
+    outline: none;
 }

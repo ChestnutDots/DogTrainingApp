@@ -34,7 +34,7 @@
   <h3 class="titleStyle">Welcome to Dog Training App!</h3>
   <br>
   <a th:href="@{/addDogs}"
-     class="btn btn-default btn-sm mb-3">
+     class="btn btn-primary btn-sm mb-3">
     Add Dog Profile
   </a>
   <div class="row">
@@ -44,7 +44,7 @@
           <h5 class="card-title" th:text="${tempDog.name}">Dog Name</h5>
           <img src="/images/DogIcon2.png" class="mx-auto" width="200">
           <a th:href="@{/showDogProfile(dogId=${tempDog.id})}"
-             class="btn btn-default btn-sm">
+             class="btn btn-primary btn-sm">
             View Profile
           </a>
         </div>

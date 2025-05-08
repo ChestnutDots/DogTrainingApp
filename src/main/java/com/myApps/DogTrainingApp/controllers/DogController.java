@@ -40,4 +40,9 @@ public class DogController {
         return "redirect:/";
     }
 
+    @GetMapping("/newTraining")
+    public String addNewTrainingSession(){
+        return "new-training";
+    }
+
 }

@@ -2,6 +2,7 @@ package com.myApps.DogTrainingApp.controller;
 
 
 import com.myApps.DogTrainingApp.controllers.UserController;
+import com.myApps.DogTrainingApp.entities.Dog;
 import com.myApps.DogTrainingApp.entities.User;
 import com.myApps.DogTrainingApp.service.DogService;
 import com.myApps.DogTrainingApp.service.UserService;
@@ -56,9 +57,14 @@ public class UserControllerTest {
     @Test
     public void openDogProfile() throws Exception{
 
-        mockMvc.perform(get("/showDogProfile"))
+        Dog mockDog = new Dog("Fido", new User(), 3);
+        when(dogService.findById(1)).thenReturn(mockDog);
+        mockMvc.perform(get("/showDogProfile")
+                .param("dogId","1"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("dog-profile"));
+                .andExpect(view().name("dog-profile"))
+                .andExpect(model().attributeExists("dog"))
+                .andExpect(content().string(containsString("New Training Session")));
     }
 
 

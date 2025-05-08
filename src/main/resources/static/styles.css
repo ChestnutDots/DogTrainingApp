@@ -1,7 +1,53 @@
+html, body{
+    height: 100%;
+    margin: 0;
+}
+
 /*
 Text styles
  */
 .titleStyle{
-    color: #662200;
+    color: #334d19;
     font-size: 35px;
+}
+.textColor{
+    color: #334d19;
+}
+
+/*
+Background
+ */
+body.bg-4{
+    background: linear-gradient(
+    to bottom,
+    #8FC757 0%,
+    #EDC453 100%
+    ) no-repeat fixed;
+}
+/*
+Navigation Bar
+ */
+.navbar.bg-nav{
+    background-color: rgba(50, 154, 154, 0.4)
+    /*#EDC453;
+
+     */
+}
+
+/*
+Card Styles
+ */
+.bg-card{
+    /*
+    background-color: #f8e7ba;
+     */
+    background-color: rgba(255, 255, 255, 0.3)
+}
+
+/*
+Button Styles
+ */
+.btn-default{
+    background-color: rgba(50, 154, 154, 0.6);
+    color: #ecf9f9;
 }

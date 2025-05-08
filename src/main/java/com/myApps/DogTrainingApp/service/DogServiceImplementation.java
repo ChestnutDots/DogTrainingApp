@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class DogServiceImplementation implements DogService{
@@ -25,6 +26,18 @@ public class DogServiceImplementation implements DogService{
     @Override
     public List<Dog> findAllByUser(User theUser) {
         return dogRepository.findAllByUser(theUser);
+    }
+
+    @Override
+    public Dog findById(int theId) {
+        Optional<Dog> result= dogRepository.findById(theId);
+        Dog theDog;
+        if(result.isPresent()){
+            theDog=result.get();
+        }else{
+            throw new RuntimeException("Did not find dog id - "+theId);
+        }
+        return theDog;
     }
 
 }

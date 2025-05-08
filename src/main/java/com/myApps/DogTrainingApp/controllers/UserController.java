@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -52,8 +53,11 @@ public class UserController {
     }
 
     @GetMapping("/showDogProfile")
-    public String showDogProfile(Model model){
-        model.addAttribute("dog", new Dog());
+    public String showDogProfile(@RequestParam("dogId") int theId, Model model){
+
+        Dog theDog=dogService.findById(theId);
+
+        model.addAttribute("dog", theDog);
         return "dog-profile";
     }
 }

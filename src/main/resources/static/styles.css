@@ -50,7 +50,7 @@ Button Styles
     outline: none;
 }
 
-.btn-primary:hover
+.btn-primary:hover,
 .btn-primary:active{
     background-color: rgba(50, 154, 154, 1);
     color: #ecf9f9;
@@ -66,7 +66,7 @@ Button Styles
     outline: none;
 }
 
-.btn-secondary:hover
+.btn-secondary:hover,
 .btn-secondary:active{
     background-color: rgba(50, 154, 102, 1);
     color: #ecf9f9;

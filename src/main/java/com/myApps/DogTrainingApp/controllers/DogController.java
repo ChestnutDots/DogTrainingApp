@@ -37,7 +37,7 @@ public class DogController {
         User theUser=userService.findByUsername(username);
         theDog.setUser(theUser);
         dogService.save(theDog);
-        return "redirect:/main";
+        return "redirect:/";
     }
 
 }

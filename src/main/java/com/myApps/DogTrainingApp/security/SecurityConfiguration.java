@@ -32,13 +32,13 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests(configurer ->
                         configurer
                                 .requestMatchers("/login","/addUser","/saveUser", "/css/**").permitAll()
-                                .requestMatchers("/main","/add-dog", "/save").hasRole("USER")
+                                .requestMatchers("/","/add-dog", "/save").hasRole("USER")
                                 .anyRequest().authenticated()
                 )
                 .formLogin(form->
                         form.loginPage("/login")
                                 .loginProcessingUrl("/authenticate")
-                                .defaultSuccessUrl("/main", true)
+                                .defaultSuccessUrl("/", true)
                                 .permitAll()
                 )
                 .logout(logout->logout

@@ -45,7 +45,7 @@ public class DogControllerTest {
         mockMvc.perform(post("/save")
                 .flashAttr("dog", theDog))
                 .andExpect(status().is3xxRedirection())
-                .andExpect(redirectedUrl("/main"));
+                .andExpect(redirectedUrl("/"));
 
         verify(dogService).save(argThat(dog ->
                 theDog.getId() ==0

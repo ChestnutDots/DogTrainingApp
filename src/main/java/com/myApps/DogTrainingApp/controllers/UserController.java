@@ -24,7 +24,7 @@ public class UserController {
         this.userService=userService;
     }
 
-    @GetMapping("/main")
+    @GetMapping("/")
     public String showMainPage(Model model){
         String username= SecurityContextHolder.getContext().getAuthentication().getName();
         User theUser=userService.findByUsername(username);
@@ -49,5 +49,11 @@ public class UserController {
             model.addAttribute("errorMessage", ex.getMessage());
             return "user-registration-form";
         }
+    }
+
+    @GetMapping("/showDogProfile")
+    public String showDogProfile(Model model){
+        model.addAttribute("dog", new Dog());
+        return "dog-profile";
     }
 }

@@ -20,13 +20,20 @@
      class="btn btn-info btn-sm mb-3">
     Add Dog Profile
   </a>
-  <table class="table table-hover"></table>
-  <tbody>
-  <tr th:each="tempDog: ${dogs}">
-    <td th:text="${tempDog.name}"/>
-  </tr>
-  </tbody>
-
+  <div class="row">
+    <div class="col-sm-4 mb-3" th:each="tempDog : ${dogs}">
+      <div class="card h-100">
+        <div class="card-body">
+          <h5 class="card-title" th:text="${tempDog.name}">Dog Name</h5>
+          <img src="/images/DogIcon.png" width="200">
+          <a th:href="@{/showDogProfile}"
+             class="btn btn-info btn-sm">
+            View Profile
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 </body>

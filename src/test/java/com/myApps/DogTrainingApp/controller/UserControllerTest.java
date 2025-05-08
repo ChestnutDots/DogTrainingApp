@@ -37,7 +37,7 @@ public class UserControllerTest {
 
         when(dogService.findAllByUser(new User())).thenReturn(Collections.emptyList());
 
-        mockMvc.perform(get("/main"))
+        mockMvc.perform(get("/"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("main"))
                 .andExpect(content().string(containsString("Add Dog Profile")))
@@ -51,6 +51,14 @@ public class UserControllerTest {
         mockMvc.perform(get("/addUser"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("user-registration-form"));
+    }
+
+    @Test
+    public void openDogProfile() throws Exception{
+
+        mockMvc.perform(get("/showDogProfile"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("dog-profile"));
     }
 
 

@@ -50,6 +50,22 @@ public class DogServiceTest {
     }
 
     @Test
+    public void testSaveDog_throwException_whenAgeTooLong(){
+        Dog theDog = new Dog();
+        theDog.setAge(03242212152);
+        assertThrows(IllegalArgumentException.class, () -> dogServiceImplementation.save(theDog));
+    }
+
+    /**
+    @Test
+    public void testSaveDog_throwException_whenAgeNotANumber(){
+        Dog theDog = new Dog();
+        theDog.setAge(02);
+        assertThrows(IllegalArgumentException.class, () -> dogServiceImplementation.save(theDog));
+    }
+     **/
+
+    @Test
     public void testSaveDog_throwException_invalidName(){
         Dog theDog = new Dog();
         theDog.setName("!..!");
@@ -58,9 +74,25 @@ public class DogServiceTest {
     }
 
     @Test
+    public void testSaveDog_throwException_nameTooLong(){
+        Dog theDog = new Dog();
+        theDog.setName("aaaaaaaaaabbbbbbbbbbbcccccccccccceeeeeeeeeeeeeeeffffffffffffgggggggggg");
+        theDog.setBreed("Pug");
+        assertThrows(IllegalArgumentException.class, () -> dogServiceImplementation.save(theDog));
+    }
+
+    @Test
     public void testSaveDog_throwException_invalidBreed(){
         Dog theDog = new Dog();
         theDog.setBreed("???");
+        theDog.setName("Charles");
+        assertThrows(IllegalArgumentException.class, () -> dogServiceImplementation.save(theDog));
+    }
+
+    @Test
+    public void testSaveDog_throwException_BreedTooLong(){
+        Dog theDog = new Dog();
+        theDog.setBreed("aaaaaabbbbbbbbbcccccccccccccddddddddddeeeeeeeeeeeffffffffffggggggggghhhhh");
         theDog.setName("Charles");
         assertThrows(IllegalArgumentException.class, () -> dogServiceImplementation.save(theDog));
     }

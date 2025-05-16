@@ -52,10 +52,26 @@ public class UserServiceTest {
     }
 
     @Test
+    public void saveUser_usernameTooLong(){
+        User theUser = new User();
+        theUser.setUsername("carolcarolcarolcarolcarolcarolcarolcarolcarolcarol");
+        theUser.setPassword("pass123");
+        assertThrows(IllegalArgumentException.class, () ->userServiceImplementation.saveUser(theUser));
+    }
+
+    @Test
     public void saveUser_invalidPassword(){
         User theUser = new User();
         theUser.setUsername("carol");
         theUser.setPassword("´><:");
+        assertThrows(IllegalArgumentException.class, () ->userServiceImplementation.saveUser(theUser));
+    }
+
+    @Test
+    public void saveUser_passwordTooLong(){
+        User theUser = new User();
+        theUser.setUsername("carol");
+        theUser.setPassword("passwordpasswordpasswordpasswordpasswordpasswordpasswordpassword");
         assertThrows(IllegalArgumentException.class, () ->userServiceImplementation.saveUser(theUser));
     }
 }

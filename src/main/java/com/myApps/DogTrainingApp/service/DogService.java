@@ -10,4 +10,5 @@ public interface DogService {
     Dog save(Dog theDog);
     List<Dog> findAllByUser(User theUser);
     Dog findById(int theId);
+    void deleteById(int theId);
 }

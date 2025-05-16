@@ -45,7 +45,10 @@
     <br>
     <a th:href="@{/newTraining}" class="btn btn-primary btn-sm mb-3">New Training Session</a>
     <br>
-    <a th:href="@{/deleteDog}" class="btn btn-secondary btn-sm mb-3">Delete Dog</a>
+    <a th:href="@{/deleteDog(dogId=${dog.id})}"
+            class="btn btn-secondary btn-sm mb-3"
+            onclick="if(!(confirm('Are you sure you want to delete this dog profile?'))) return false">
+        Delete Dog</a>
 </div>
 <script
         src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"

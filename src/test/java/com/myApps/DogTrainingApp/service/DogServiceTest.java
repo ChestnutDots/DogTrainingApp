@@ -76,5 +76,13 @@ public class DogServiceTest {
         verify(dogRepository, times(1)).findById(ArgumentMatchers.eq(theId));
     }
 
+    @Test
+    public void deleteDog(){
+        int theId=3;
+        dogServiceImplementation.deleteById(theId);
+        verify(dogRepository, times(1)).deleteById(theId);
+
+    }
+
 
 }

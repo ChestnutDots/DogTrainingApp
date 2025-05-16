@@ -53,7 +53,10 @@ public class DogController {
     }
 
     @GetMapping("/deleteDog")
-    public String deleteDog(@RequestParam("dogId") int theId){}
+    public String deleteDog(@RequestParam("dogId") int theId){
+        dogService.deleteById(theId);
+        return "redirect:/";
+    }
 
 
 }

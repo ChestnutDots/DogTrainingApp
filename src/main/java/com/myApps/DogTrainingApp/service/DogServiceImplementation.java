@@ -51,4 +51,9 @@ public class DogServiceImplementation implements DogService{
         return theDog;
     }
 
+    @Override
+    public void deleteById(int theId) {
+        dogRepository.deleteById(theId);
+    }
+
 }

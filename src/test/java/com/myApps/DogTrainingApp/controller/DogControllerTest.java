@@ -11,8 +11,10 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 
+import static org.hamcrest.Matchers.containsString;
 import static org.mockito.ArgumentMatchers.argThat;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -58,5 +60,30 @@ public class DogControllerTest {
         verify(dogService).save(argThat(dog ->
                 theDog.getId() ==0
         ));
+    }
+
+    @Test
+    @WithMockUser("carol")
+    public void deleteDog_RedirectsToMain() throws Exception{
+        mockMvc.perform(post("/deleteDog")
+                        .param("dogId", "15")
+                        .with(csrf()))
+                        .andExpect(status().is3xxRedirection())
+                        .andExpect(redirectedUrl("/"));
+    }
+
+    @Test
+    @WithMockUser("carol")
+    public void openNewTraining() throws Exception{
+        Dog theDog = new Dog();
+        theDog.setId(15);
+        when(dogService.findById(15)).thenReturn(theDog);
+        mockMvc.perform(get("/newTraining")
+                        .param("dogId", "15"))
+                        .andExpect(status().isOk())
+                        .andExpect(view().name("new-training"))
+                        .andExpect(content().string(containsString("Select command")))
+                        .andExpect(model().attributeExists("dog"))
+                        .andExpect(model().attribute("dog", theDog));
     }
 }

@@ -43,14 +43,16 @@
         <div class="card-body text-center">
           <h5 class="card-title" th:text="${tempDog.name}">Dog Name</h5>
           <img src="/images/DogIcon2.png" class="mx-auto" width="200">
-          <a th:href="@{/showDogProfile(dogId=${tempDog.id})}"
-             class="btn btn-primary btn-sm">
-            View Profile
-          </a>
-          <a th:href="@{/newTraining(dogId=${tempDog.id})}"
-            class="btn btn-primary btn-sm">
-            Train
-          </a>
+          <div class="d-flex justify-content-center gap-2 mt-2">
+            <a th:href="@{/showDogProfile(dogId=${tempDog.id})}"
+               class="btn btn-primary btn-sm">
+              View Profile
+            </a>
+            <a th:href="@{/newTraining(dogId=${tempDog.id})}"
+               class="btn btn-primary btn-sm">
+              Train
+            </a>
+          </div>
         </div>
       </div>
     </div>

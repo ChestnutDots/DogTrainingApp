@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="/styles.css">
   <title>New Training</title>
 </head>
-<body class="bg-4">
+<body class="bg-3">
 <nav class="navbar navbar-expand-md navbar-light bg-nav">
   <div class="container">
     <a class="navbar-brand d-flex align-items-center" th:href="@{/}">
@@ -29,5 +29,13 @@
     </div>
   </div>
 </nav>
+<div class="container">
+  <h3 class="titleStyle">Add New Training</h3>
+  <br>
+  <form action="#" th:action="@{/saveTraining}"
+      th:object="${trainingSession}" method="POST">
+
+  </form>
+</div>
 </body>
 </html>

@@ -1,8 +1,10 @@
 package com.myApps.DogTrainingApp.controllers;
 
+import com.myApps.DogTrainingApp.entities.TrainingSession;
 import com.myApps.DogTrainingApp.entities.User;
 import com.myApps.DogTrainingApp.service.DogService;
 import com.myApps.DogTrainingApp.entities.Dog;
+import com.myApps.DogTrainingApp.service.TrainingSessionService;
 import com.myApps.DogTrainingApp.service.UserService;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -47,16 +49,19 @@ public class DogController {
 
     }
 
-    @GetMapping("/newTraining")
-    public String addNewTrainingSession(){
-        return "new-training";
-    }
-
-    @GetMapping("/deleteDog")
+    @PostMapping("/deleteDog")
     public String deleteDog(@RequestParam("dogId") int theId){
         dogService.deleteById(theId);
         return "redirect:/";
     }
+
+    @GetMapping("/newTraining")
+    public String addNewTrainingSession(@RequestParam("dogId") int theId, Model theModel){
+        Dog theDog=dogService.findById(theId);
+        theModel.addAttribute("dog", theDog);
+        return "new-training";
+    }
+
 
 
 }

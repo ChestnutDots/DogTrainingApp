@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="/styles.css">
   <title>Add Dog Profile</title>
 </head>
-<body class="bg-4">
+<body class="bg-3">
 <nav class="navbar navbar-expand-md navbar-light bg-nav">
   <div class="container">
     <a class="navbar-brand d-flex align-items-center" th:href="@{/}">
@@ -36,14 +36,31 @@
         th:object="${dog}" method="POST">
     <input type="hidden" th:field="*{id}">
     <div>
-      <input type="text" th:field="*{name}"
-          placeholder="Name" required>
+      <div th:if="${errorMessage}">
+        <div class="alert alert-danger">
+          <span th:text="${errorMessage}"></span>
+        </div>
+      </div>
+      <div class="mb-3 row">
+        <label for="name" class="col-sm-2 col-form-label textColor">Name:</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="name" th:field="*{name}" required>
+        </div>
+      </div>
       <br><br>
-      <input type="text" th:field="*{breed}"
-          placeholder="Breed" required>
+      <div class="mb-3 row">
+        <label for="breed" class="col-sm-2 col-form-label textColor">Breed:</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="breed" th:field="*{breed}" required>
+        </div>
+      </div>
       <br><br>
-      <input type="number" th:field="*{age}"
-             placeholder="How old is your dog?" required>
+      <div class="mb-3 row">
+        <label for="age" class="col-sm-2 col-form-label textColor">Age:</label>
+        <div class="col-sm-10">
+          <input type="number" class="form-control" id="age" th:field="*{age}" required>
+        </div>
+      </div>
     </div>
     <br><br>
     <button type="submit" class="btn btn-primary">Save</button>

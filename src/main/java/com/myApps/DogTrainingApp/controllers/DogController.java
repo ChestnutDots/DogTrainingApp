@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -32,17 +33,27 @@ public class DogController {
     }
 
     @PostMapping("/save")
-    public String saveDog(@ModelAttribute("dog") Dog theDog){
-        String username= SecurityContextHolder.getContext().getAuthentication().getName();
-        User theUser=userService.findByUsername(username);
-        theDog.setUser(theUser);
-        dogService.save(theDog);
-        return "redirect:/";
+    public String saveDog(@ModelAttribute("dog") Dog theDog, Model theModel){
+        try{
+            String username= SecurityContextHolder.getContext().getAuthentication().getName();
+            User theUser=userService.findByUsername(username);
+            theDog.setUser(theUser);
+            dogService.save(theDog);
+            return "redirect:/";
+        }catch (IllegalArgumentException ex){
+            theModel.addAttribute("errorMessage", ex.getMessage());
+            return "add-dog";
+        }
+
     }
 
     @GetMapping("/newTraining")
     public String addNewTrainingSession(){
         return "new-training";
     }
+
+    @GetMapping("/deleteDog")
+    public String deleteDog(@RequestParam("dogId") int theId){}
+
 
 }

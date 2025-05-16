@@ -12,17 +12,31 @@ Text styles
 }
 .textColor{
     color: #334d19;
+    font-size: 20px;
 }
 
 /*
 Background
  */
 body.bg-4{
+    /*
     background: linear-gradient(
     to bottom,
     #8FC757 0%,
     #EDC453 100%
     ) no-repeat fixed;
+
+     */
+    background: url("images/goldenDog.png") no-repeat fixed;
+    background-size: cover;
+}
+
+body.bg-3{
+    background:
+            linear-gradient(to bottom, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0)) no-repeat fixed,
+            url("images/goldenPaws.png") no-repeat fixed;
+    background-size: cover, cover;
+    background-position: center, center;
 }
 /*
 Navigation Bar

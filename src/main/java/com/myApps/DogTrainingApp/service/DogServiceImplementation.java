@@ -20,6 +20,17 @@ public class DogServiceImplementation implements DogService{
     }
 
     public Dog save(Dog theDog){
+        if(theDog.getAge()<0 || theDog.getAge()>99){
+            throw new IllegalArgumentException("Age out of range 0-99.");
+        }
+        String name=theDog.getName();
+        if(!name.matches("[A-Za-z]+") || name==null){
+            throw new IllegalArgumentException("Name can only contain letters.");
+        }
+        String breed=theDog.getBreed();
+        if(!breed.matches("[A-Za-z]+") || breed==null){
+            throw new IllegalArgumentException("Breed can only contain letters.");
+        }
         return dogRepository.save(theDog);
     }
 

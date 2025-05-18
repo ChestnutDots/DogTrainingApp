@@ -33,8 +33,57 @@
   <h3 class="titleStyle">Add New Training</h3>
   <br>
   <form action="#" th:action="@{/saveTraining}"
-      th:object="${trainingSession}" method="POST">
+        th:object="${trainingSession}" method="POST">
+    <input type="hidden" th:field="*{id}">
+    <input type="hidden" name="dogId" th:value="${dog.id}" />
+  <h4>Select command:</h4>
+    <div class="row">
+      <!-- SIT -->
+      <div class="col-sm-4 mb-3">
+        <input type="radio" class="btn-check" name="command" id="command-sit" value="Sit" autocomplete="off" required>
+        <label class="card h-100 bg-card text-center" for="command-sit">
+          <div class="card-body">
+            <h5 class="card-title">Sit</h5>
+            <img src="/images/DogIcon2.png" class="mx-auto" width="200">
+          </div>
+        </label>
+      </div>
+      <!-- LAY DOWN -->
+      <div class="col-sm-4 mb-3">
+        <input type="radio" class="btn-check" name="command" id="command-lay" value="Lay Down" autocomplete="off">
+        <label class="card h-100 bg-card text-center" for="command-lay">
+          <div class="card-body">
+            <h5 class="card-title">Lay Down</h5>
+            <img src="/images/DogIcon2.png" class="mx-auto" width="200">
+          </div>
+        </label>
+      </div>
 
+      <!-- STAY -->
+      <div class="col-sm-4 mb-3">
+        <input type="radio" class="btn-check" name="command" id="command-stay" value="Stay" autocomplete="off">
+        <label class="card h-100 bg-card text-center" for="command-stay">
+          <div class="card-body">
+            <h5 class="card-title">Stay</h5>
+            <img src="/images/DogIcon2.png" class="mx-auto" width="200">
+          </div>
+        </label>
+      </div>
+    </div>
+  <div class="mb-3 row">
+    <label for="successful_trials" class="col-sm-2 col-form-label textColor">Successful Trials: </label>
+    <div class="col-sm-10">
+      <input type="number" class="form-control" id="successful_trials" th:field="*{nr_successful}" required>
+    </div>
+  </div>
+    <div class="mb-3 row">
+      <label for="all_trials" class="col-sm-2 col-form-label textColor">All Trials: </label>
+      <div class="col-sm-10">
+        <input type="number" class="form-control" id="all_trials" th:field="*{nr_trials}" required>
+      </div>
+    </div>
+    <br><br>
+    <button type="submit" class="btn btn-primary">Save Training</button>
   </form>
 </div>
 </body>

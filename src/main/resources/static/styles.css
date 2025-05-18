@@ -53,6 +53,10 @@ Card Styles
     background-color: rgba(255, 255, 255, 0.3)
 }
 
+input[type="radio"].btn-check:checked + label {
+    border: 3px solid #0d6efd;
+    box-shadow: 0 0 10px rgba(13, 110, 253, 0.5);
+}
 /*
 Button Styles
  */

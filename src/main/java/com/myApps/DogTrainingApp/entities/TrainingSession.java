@@ -24,6 +24,12 @@ public class TrainingSession {
     @Column(name="command")
     private String command;
 
+    @Column(name="nr_trials")
+    private double nr_trials;
+
+    @Column(name="nr_successful")
+    private double nr_successful;
+
     @Column(name="progress")
     private double progress;
 
@@ -66,6 +72,22 @@ public class TrainingSession {
 
     public void setCommand(String command) {
         this.command = command;
+    }
+
+    public double getNr_trials() {
+        return nr_trials;
+    }
+
+    public void setNr_trials(double trials) {
+        this.nr_trials = trials;
+    }
+
+    public double getNr_successful() {
+        return nr_successful;
+    }
+
+    public void setNr_successful(double nr_successful) {
+        this.nr_successful = nr_successful;
     }
 
     public double getProgress() {

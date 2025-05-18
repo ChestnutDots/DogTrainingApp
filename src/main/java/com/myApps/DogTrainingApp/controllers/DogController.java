@@ -59,6 +59,7 @@ public class DogController {
     public String addNewTrainingSession(@RequestParam("dogId") int theId, Model theModel){
         Dog theDog=dogService.findById(theId);
         theModel.addAttribute("dog", theDog);
+        theModel.addAttribute("trainingSession", new TrainingSession());
         return "new-training";
     }
 

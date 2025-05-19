@@ -14,11 +14,14 @@ Features implemented:
 
 2. User Registration
 3. Main Dashboard
-![Dashboard](./images/DashboardDogTrainingApp.png)
+![Dashboard Screenshot](./images/DashboardDogTrainingApp.png)
+
 4. Add a dog profile
-![Add New Dog](./images/AddNewDog.png)
+![Add Dog Screenshot](./images/AddNewDog.png)
+
 5. Add a training session for a particular dog (command trained, number of trials, number of successful trials)
-![Add New Training](./images/AddNewTraining.png)
+![Add Training Screenshot](./images/AddNewTraining.png)
+
 
 Features I am currently working on:
 

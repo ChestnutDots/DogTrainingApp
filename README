@@ -10,17 +10,17 @@ This application allows you to track the progress you have been making in traini
 Features implemented:
 
 1. User Login
-![Login Screenshot](./images/LoginDogTrainingApp.png)
+![Login Screenshot](./images/LoginDogTrainingApp.jpg)
 
 2. User Registration
 3. Main Dashboard
-![Dashboard Screenshot](./images/DashboardDogTrainingApp.png)
+![Dashboard Screenshot](./images/DashboardDogTrainingApp.jpg)
 
 4. Add a dog profile
-![Add Dog Screenshot](./images/AddNewDog.png)
+![Add Dog Screenshot](./images/AddNewDog.jpg)
 
 5. Add a training session for a particular dog (command trained, number of trials, number of successful trials)
-![Add Training Screenshot](./images/AddNewTraining.png)
+![Add Training Screenshot](./images/AddNewTraining.jpg)
 
 
 Features I am currently working on:

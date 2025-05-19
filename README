@@ -22,8 +22,9 @@ Features implemented:
 
 4. Add a dog profile
 <p align="center">
-  <img src="./images/AddNewDog.jpg" width="400"/>
+  <img src="images/AddNewDog.jpg" width="400"/>
 </p>
+
 
 5. Add a training session for a particular dog (command trained, number of trials, number of successful trials)
 <p align="center">

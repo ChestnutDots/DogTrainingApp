@@ -18,6 +18,15 @@ public class TrainingSessionServiceImplementation implements TrainingSessionServ
 
     @Override
     public void save(TrainingSession trainingSession) {
+        if(trainingSession.getNr_successful()>trainingSession.getNr_trials()){
+            throw new IllegalArgumentException("Number of successful trials cannot exceed the number of total trials.");
+        }
+        if(trainingSession.getNr_trials()<0 || trainingSession.getNr_successful()<0){
+            throw new IllegalArgumentException("Number of trials must be positive.");
+        }
+        if(trainingSession.getNr_trials()>500){
+            throw new IllegalArgumentException("Number of trials cannot exceed 500.");
+        }
         trainingSessionRepository.save(trainingSession);
     }
 }

@@ -1,9 +1,12 @@
 package com.myApps.DogTrainingApp.service;
 
 import com.myApps.DogTrainingApp.dao.TrainingSessionRepository;
+import com.myApps.DogTrainingApp.entities.Dog;
 import com.myApps.DogTrainingApp.entities.TrainingSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class TrainingSessionServiceImplementation implements TrainingSessionService{
@@ -28,5 +31,10 @@ public class TrainingSessionServiceImplementation implements TrainingSessionServ
             throw new IllegalArgumentException("Number of trials cannot exceed 500.");
         }
         trainingSessionRepository.save(trainingSession);
+    }
+
+    @Override
+    public List<TrainingSession> findByDog(Dog theDog) {
+        return trainingSessionRepository.findByDog(theDog);
     }
 }

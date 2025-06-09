@@ -10,7 +10,7 @@
   <div class="container center text-center py-5">
     <h3 class="titleStyle">Please Enter Your User Details: </h3>
     <br>
-    <form action="#" th:action="@{/saveUser}"
+    <form action="#" th:action="@{/users/save}"
           th:object="${user}" method="POST" class="mt-4">
         <input type="hidden" th:field="*{id}">
         <input type="text" th:field="*{username}"

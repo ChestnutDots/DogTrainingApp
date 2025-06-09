@@ -6,11 +6,10 @@ import com.myApps.DogTrainingApp.service.DogService;
 import com.myApps.DogTrainingApp.service.TrainingSessionService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
+@RequestMapping("/training")
 public class TrainingSessionController {
 
     private TrainingSessionService trainingSessionService;
@@ -22,18 +21,21 @@ public class TrainingSessionController {
         this.dogService=dogService;
     }
 
+    @GetMapping("/new")
+    public String addNewTrainingSession(@RequestParam("dogId") int theId, Model theModel){
+        Dog theDog=dogService.findById(theId);
+        theModel.addAttribute("dog", theDog);
+        theModel.addAttribute("trainingSession", new TrainingSession());
+        return "new-training";
+    }
 
-
-    @PostMapping("/saveTraining")
+    @PostMapping("/save")
     public String saveTraining(@ModelAttribute("trainingSession") TrainingSession trainingSession,
                                @RequestParam("command") String command,
                                @RequestParam("dogId") int theId){
         Dog theDog=dogService.findById(theId);
-        trainingSession.setDog(theDog);
-        trainingSession.setCommand(command);
-        Double trainingProgress= trainingSession.getNr_successful()/ trainingSession.getNr_trials();
-        trainingSession.setProgress(trainingProgress);
-        trainingSessionService.save(trainingSession);
+        TrainingSession theSession=trainingSessionService.calculateAndSave(trainingSession, theDog, command);
+        trainingSessionService.save(theSession);
         return "redirect:/";
     }
 }

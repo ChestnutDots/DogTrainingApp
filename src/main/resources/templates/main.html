@@ -33,7 +33,7 @@
   <br>
   <h3 class="titleStyle">Welcome to Dog Training App!</h3>
   <br>
-  <a th:href="@{/addDogs}"
+  <a th:href="@{/dogs/new}"
      class="btn btn-primary btn-sm mb-3">
     Add Dog Profile
   </a>
@@ -44,11 +44,11 @@
           <h5 class="card-title" th:text="${tempDog.name}">Dog Name</h5>
           <img src="/images/DogIcon2.png" class="mx-auto" width="200">
           <div class="d-flex justify-content-center gap-2 mt-2">
-            <a th:href="@{/showDogProfile(dogId=${tempDog.id})}"
+            <a th:href="@{/dogs/show(dogId=${tempDog.id})}"
                class="btn btn-primary btn-sm">
               View Profile
             </a>
-            <a th:href="@{/newTraining(dogId=${tempDog.id})}"
+            <a th:href="@{/training/new(dogId=${tempDog.id})}"
                class="btn btn-primary btn-sm">
               Train
             </a>

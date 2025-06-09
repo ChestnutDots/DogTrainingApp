@@ -32,7 +32,7 @@
 <div class="container">
   <h3 class="titleStyle">Add New Training</h3>
   <br>
-  <form action="#" th:action="@{/saveTraining}"
+  <form action="#" th:action="@{/training/save}"
         th:object="${trainingSession}" method="POST">
     <input type="hidden" th:field="*{id}">
     <input type="hidden" name="dogId" th:value="${dog.id}" />

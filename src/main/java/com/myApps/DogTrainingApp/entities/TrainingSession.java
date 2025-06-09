@@ -25,13 +25,13 @@ public class TrainingSession {
     private String command;
 
     @Column(name="nr_trials")
-    private double nr_trials;
+    private int nr_trials;
 
     @Column(name="nr_successful")
-    private double nr_successful;
+    private int nr_successful;
 
     @Column(name="progress")
-    private double progress;
+    private int progress;
 
     public TrainingSession(){
 
@@ -74,29 +74,27 @@ public class TrainingSession {
         this.command = command;
     }
 
-    public double getNr_trials() {
+    public int getNr_trials() {
         return nr_trials;
     }
 
-    public void setNr_trials(double trials) {
+    public void setNr_trials(int trials) {
         this.nr_trials = trials;
     }
 
-    public double getNr_successful() {
+    public int getNr_successful() {
         return nr_successful;
     }
 
-    public void setNr_successful(double nr_successful) {
+    public void setNr_successful(int nr_successful) {
         this.nr_successful = nr_successful;
     }
 
-    public double getProgress() {
+    public int getProgress() {
         return progress;
     }
 
-    public void setProgress(double progress) {
+    public void setProgress(int progress) {
         this.progress = progress;
     }
-
-
 }

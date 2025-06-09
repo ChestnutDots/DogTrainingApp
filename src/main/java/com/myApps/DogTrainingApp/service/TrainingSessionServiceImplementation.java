@@ -37,4 +37,19 @@ public class TrainingSessionServiceImplementation implements TrainingSessionServ
     public List<TrainingSession> findByDog(Dog theDog) {
         return trainingSessionRepository.findByDog(theDog);
     }
+
+    @Override
+    public TrainingSession calculateAndSave(TrainingSession theSession, Dog theDog, String theCommand) {
+        theSession.setDog(theDog);
+        theSession.setCommand(theCommand);
+
+        int progress=calculateProgress(theSession);
+        theSession.setProgress(progress);
+        return theSession;
+    }
+
+    private int calculateProgress(TrainingSession theSession) {
+        if(theSession.getNr_trials()==0) return 0;
+        return(int)(((double) theSession.getNr_successful() / theSession.getNr_trials()) * 100);
+    }
 }

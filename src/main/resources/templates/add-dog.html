@@ -32,7 +32,7 @@
 <div class="container">
   <h3 class="titleStyle">Add a new dog</h3>
   <br>
-  <form action="#" th:action="@{/save}"
+  <form action="#" th:action="@{/dogs/save}"
         th:object="${dog}" method="POST">
     <input type="hidden" th:field="*{id}">
     <div>

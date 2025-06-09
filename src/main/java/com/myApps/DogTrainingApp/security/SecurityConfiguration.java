@@ -31,8 +31,8 @@ public class SecurityConfiguration {
         http
                 .authorizeHttpRequests(configurer ->
                         configurer
-                                .requestMatchers("/login","/addUser","/saveUser", "/images/**", "/styles.css").permitAll()
-                                .requestMatchers("/","/add-dog", "/save").hasRole("USER")
+                                .requestMatchers("/login","/users/new","/users/save", "/images/**", "/styles.css").permitAll()
+                                .requestMatchers("/","/dogs/**","/training/**", "/users/**", "/images/**", "/styles.css").hasRole("USER")
                                 .anyRequest().authenticated()
                 )
                 .formLogin(form->

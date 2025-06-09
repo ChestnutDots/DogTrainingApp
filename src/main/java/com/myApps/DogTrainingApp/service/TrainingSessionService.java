@@ -10,4 +10,5 @@ import java.util.List;
 public interface TrainingSessionService {
     void save(TrainingSession trainingSession);
     List<TrainingSession> findByDog(Dog theDog);
+    TrainingSession calculateAndSave(TrainingSession theSession, Dog theDog, String theCommand);
 }

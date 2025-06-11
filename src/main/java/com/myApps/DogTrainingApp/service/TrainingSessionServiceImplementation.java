@@ -39,7 +39,7 @@ public class TrainingSessionServiceImplementation implements TrainingSessionServ
     }
 
     @Override
-    public TrainingSession calculateAndSave(TrainingSession theSession, Dog theDog, String theCommand) {
+    public TrainingSession calculateSessionProgress(TrainingSession theSession, Dog theDog, String theCommand) {
         theSession.setDog(theDog);
         theSession.setCommand(theCommand);
 

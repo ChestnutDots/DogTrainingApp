@@ -34,7 +34,7 @@ public class TrainingSessionController {
                                @RequestParam("command") String command,
                                @RequestParam("dogId") int theId){
         Dog theDog=dogService.findById(theId);
-        TrainingSession theSession=trainingSessionService.calculateAndSave(trainingSession, theDog, command);
+        TrainingSession theSession=trainingSessionService.calculateSessionProgress(trainingSession, theDog, command);
         trainingSessionService.save(theSession);
         return "redirect:/";
     }

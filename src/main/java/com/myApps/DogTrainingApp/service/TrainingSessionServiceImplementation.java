@@ -6,6 +6,7 @@ import com.myApps.DogTrainingApp.entities.TrainingSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 
 @Service
@@ -39,6 +40,28 @@ public class TrainingSessionServiceImplementation implements TrainingSessionServ
     }
 
     @Override
+    public HashMap<String, Integer> findCountsOfCommandsUsed(Dog theDog) {
+
+        List<TrainingSession> trainingSessions=findByDog(theDog);
+        int totalSessions=trainingSessions.size();
+
+        HashMap<String, Integer> commandCounts = new HashMap<>();
+        if(totalSessions==0) return commandCounts;
+
+        for(TrainingSession session : trainingSessions){
+            String command=session.getCommand();
+            if(commandCounts.containsKey(command)){
+                int commandTrials=commandCounts.get(command);
+                commandCounts.put(command, commandTrials+session.getNr_trials());
+            }else{
+                commandCounts.put(session.getCommand(), session.getNr_trials());
+            }
+        }
+
+        return commandCounts;
+    }
+
+    @Override
     public TrainingSession calculateSessionProgress(TrainingSession theSession, Dog theDog, String theCommand) {
         theSession.setDog(theDog);
         theSession.setCommand(theCommand);
@@ -47,6 +70,8 @@ public class TrainingSessionServiceImplementation implements TrainingSessionServ
         theSession.setProgress(progress);
         return theSession;
     }
+
+
 
     private int calculateProgress(TrainingSession theSession) {
         if(theSession.getNr_trials()==0) return 0;

@@ -43,19 +43,14 @@
     </script>
     <!-- Commands Trained Chart -->
     <script th:inline="javascript">
+        /*<![CDATA[*/
         google.charts.load('current', {'packages':['corechart']});
         google.charts.setOnLoadCallback(drawChart);
 
         function drawChart() {
 
-            var data = google.visualization.arrayToDataTable([
-                ['Task', 'Hours per Day'],
-                ['Work',     11],
-                ['Eat',      2],
-                ['Commute',  2],
-                ['Watch TV', 2],
-                ['Sleep',    7]
-            ]);
+            var rawPercentageData= google.visualization.arrayToDataTable(/*[[${percentageData}]]*/);
+            console.log(rawPercentageData);
 
             var options = {
                 backgroundColor: 'transparent',
@@ -63,7 +58,7 @@
 
             var chart = new google.visualization.PieChart(document.getElementById('piechart'));
 
-            chart.draw(data, options);
+            chart.draw(rawPercentageData, options);
         }
     </script>
     <title th:text="${dog.name}">DogName</title>

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -45,7 +46,24 @@ public class DogController {
                     return point;
                 })
                 .collect(Collectors.toList());
+
+        HashMap<String, Integer> commandPercentage=trainingSessionService.findCountsOfCommandsUsed(theDog);
+        List<List<Object>> percentageData = new ArrayList<>();
+        List<Object> header = new ArrayList<>();
+        header.add("Command");
+        header.add("Percentage");
+        percentageData.add(header);
+
+        for(String command : commandPercentage.keySet()){
+            Integer percentage= commandPercentage.get(command);
+            List<Object> row = new ArrayList<>();
+            row.add(command);
+            row.add(percentage);
+
+            percentageData.add(row);
+        }
         model.addAttribute("chartData", chartData);
+        model.addAttribute("percentageData", percentageData);
         return "dog-profile";
     }
 

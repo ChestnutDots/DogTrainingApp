@@ -33,6 +33,9 @@ public class TrainingSession {
     @Column(name="progress")
     private int progress;
 
+    @Column(name="treat")
+    private String treat;
+
     public TrainingSession(){
 
     }
@@ -96,5 +99,13 @@ public class TrainingSession {
 
     public void setProgress(int progress) {
         this.progress = progress;
+    }
+
+    public String getTreat() {
+        return treat;
+    }
+
+    public void setTreat(String treat) {
+        this.treat = treat;
     }
 }

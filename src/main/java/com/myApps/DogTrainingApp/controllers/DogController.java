@@ -59,11 +59,26 @@ public class DogController {
             List<Object> row = new ArrayList<>();
             row.add(command);
             row.add(percentage);
-
             percentageData.add(row);
+        }
+
+        HashMap<String, Integer> treatPercentage=trainingSessionService.findCountsOfTreats(theDog);
+        List<List<Object>> treatData = new ArrayList<>();
+        List<Object> headerTreats = new ArrayList<>();
+        headerTreats.add("Treats");
+        headerTreats.add("PercentageTreats");
+        treatData.add(headerTreats);
+
+        for(String treat : treatPercentage.keySet()){
+            Integer treatPercent= treatPercentage.get(treat);
+            List<Object> row = new ArrayList<>();
+            row.add(treat);
+            row.add(treatPercent);
+            treatData.add(row);
         }
         model.addAttribute("chartData", chartData);
         model.addAttribute("percentageData", percentageData);
+        model.addAttribute("treatData", treatData);
         return "dog-profile";
     }
 

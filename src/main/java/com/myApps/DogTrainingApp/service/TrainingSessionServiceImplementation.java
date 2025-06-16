@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.function.Function;
 
 @Service
 public class TrainingSessionServiceImplementation implements TrainingSessionService{
@@ -41,25 +42,32 @@ public class TrainingSessionServiceImplementation implements TrainingSessionServ
 
     @Override
     public HashMap<String, Integer> findCountsOfCommandsUsed(Dog theDog) {
+        return findCountsOfString(theDog, TrainingSession::getCommand);
+    }
+
+    @Override
+    public HashMap<String, Integer> findCountsOfTreats(Dog theDog) {
+        return findCountsOfString(theDog, TrainingSession::getTreat);
+    }
+
+    private HashMap<String, Integer> findCountsOfString(Dog theDog,
+                                                        Function<TrainingSession, String> fieldExtractor){
 
         List<TrainingSession> trainingSessions=findByDog(theDog);
         int totalSessions=trainingSessions.size();
 
-        HashMap<String, Integer> commandCounts = new HashMap<>();
-        if(totalSessions==0) return commandCounts;
+        HashMap<String, Integer> stringCounts = new HashMap<>();
+        if(totalSessions==0) return stringCounts;
 
         for(TrainingSession session : trainingSessions){
-            String command=session.getCommand();
-            if(commandCounts.containsKey(command)){
-                int commandTrials=commandCounts.get(command);
-                commandCounts.put(command, commandTrials+session.getNr_trials());
-            }else{
-                commandCounts.put(session.getCommand(), session.getNr_trials());
-            }
+            String key = fieldExtractor.apply(session);
+            int trials = session.getNr_trials();
+            stringCounts.put(key, stringCounts.getOrDefault(key, 0) + trials);
         }
 
-        return commandCounts;
+        return stringCounts;
     }
+
 
     @Override
     public TrainingSession calculateSessionProgress(TrainingSession theSession, Dog theDog, String theCommand) {

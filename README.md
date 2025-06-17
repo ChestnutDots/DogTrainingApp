@@ -15,14 +15,17 @@ Java | Spring Boot | MySQL | HTML | CSS Bootstrap | Spring Security | JUnit | Mo
 1. User Login
    <img width="1463" alt="LoginDogTrainingApp" src="https://github.com/user-attachments/assets/3ba8e605-a900-4e75-a72c-d8609de50c8b" />
 
-3. User Registration
-4. Main Dashboard
+2. User Registration
+3. Main Dashboard
    <img width="1384" alt="DashboardDogTrainingApp" src="https://github.com/user-attachments/assets/a5dbebc0-6356-46f0-882b-1645275294ce" />
 
-6. Add a dog profile
+4. View Dog Profile with Training Progress
+   ![ViewDogProfile](https://github.com/user-attachments/assets/7437b270-9da4-47da-aa83-c0a19826a17c)
+   
+5. Add a dog profile
      <img width="1425" alt="AddNewDog" src="https://github.com/user-attachments/assets/5a1c98f2-4cee-4863-8c53-eb4ae0d77305" />
    
-5. Add a training session for a particular dog (command trained, number of trials, number of successful trials)   
+6. Add a training session for a particular dog (command trained, number of trials, number of successful trials)   
 <img width="1441" alt="AddNewTraining" src="https://github.com/user-attachments/assets/8784324b-7ed7-49fe-abbf-05fcaac1f786" />
 
 

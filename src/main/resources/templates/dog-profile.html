@@ -15,13 +15,13 @@
         google.charts.setOnLoadCallback(drawTreatChart);
 
         function drawTrainingProgressChart() {
-            var rawData=/*[[${chartData}]]*/[];
+            var rawData=/*[[${trainingData}]]*/[];
             var data= new google.visualization.DataTable();
             data.addColumn('number', 'Training Session ID');
             data.addColumn('number', 'Training Progress Over Sessions (%)');
 
             rawData.forEach(function(row) {
-                data.addRow([row.trainingSessionId, row.trainingProgress]);
+                data.addRow([row.sessionId, row.sessionProgress]);
             });
 
             var options = {
@@ -46,7 +46,7 @@
 
         function drawCommandChart() {
 
-            var rawPercentageData= google.visualization.arrayToDataTable(/*[[${percentageData}]]*/);
+            var rawPercentageData= google.visualization.arrayToDataTable(/*[[${commandData}]]*/);
 
             var options = {
                 backgroundColor: 'transparent',
@@ -96,7 +96,7 @@
 </nav>
 <div class="container center">
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-3">
             <h1 th:text="${dog.name}" class="titleStyle">DogName</h1>
             <br>
             <img src="/images/DogIcon2.png" class="mx-auto" width="200">
@@ -120,14 +120,19 @@
                     Delete Dog</button>
             </form>
         </div>
-        <div class="col-md-4">
-            <h4>Training Progress</h4>
-            <div id="curve_chart" style="width: 900px; height: 500px; background:transparent;"></div>
-            <h4>Commands Trained</h4>
-            <div id="piechartCommands" style="width: 900px; height: 500px;"></div>
-            <h4>Treats used</h4>
-            <div id="piechartTreats" style="width: 900px; height: 500px;"></div>
-        </div>
+                <div class="col-md-3">
+                    <h4>Training Progress</h4>
+                    <div id="curve_chart" style="width: 100%; background:transparent;"></div>
+                </div>
+                <div class="col-md-3">
+                    <h4>Commands Trained</h4>
+                    <div id="piechartCommands" style="width: 100%;"></div>
+                </div>
+                <div class="col-md-3">
+                    <h4>Treats used</h4>
+                    <div id="piechartTreats" style="width: 100%;"></div>
+                </div>
+
     </div>
 </div>
 <script

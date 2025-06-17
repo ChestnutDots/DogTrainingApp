@@ -2,6 +2,7 @@ package com.myApps.DogTrainingApp.controllers;
 
 import com.myApps.DogTrainingApp.entities.TrainingSession;
 import com.myApps.DogTrainingApp.entities.User;
+import com.myApps.DogTrainingApp.service.ChartService;
 import com.myApps.DogTrainingApp.service.DogService;
 import com.myApps.DogTrainingApp.entities.Dog;
 import com.myApps.DogTrainingApp.service.TrainingSessionService;
@@ -11,11 +12,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
+import java.util.function.Function;
 
 @Controller
 @RequestMapping("/dogs")
@@ -24,12 +24,15 @@ public class DogController {
     private DogService dogService;
     private UserService userService;
     private TrainingSessionService trainingSessionService;
+    private ChartService chartService;
 
     public DogController(DogService dogService, UserService userService,
-                         TrainingSessionService trainingSessionService){
+                         TrainingSessionService trainingSessionService,
+                         ChartService chartService){
         this.dogService=dogService;
         this.userService=userService;
         this.trainingSessionService=trainingSessionService;
+        this.chartService=chartService;
     }
 
     @GetMapping("/show")
@@ -37,47 +40,20 @@ public class DogController {
 
         Dog theDog=dogService.findById(theId);
         model.addAttribute("dog", theDog);
-        List<Map<String,Number>> chartData = trainingSessionService.findByDog(theDog)
-                .stream()
-                .map(session -> {
-                    Map<String, Number> point = new HashMap<>();
-                    point.put("trainingSessionId", session.getId());
-                    point.put("trainingProgress", session.getProgress());
-                    return point;
-                })
-                .collect(Collectors.toList());
+
+        List<TrainingSession> trainingSessionsList=trainingSessionService.findByDog(theDog);
+        List<Map<String,Number>> trainingData = chartService.buildLineChartData(trainingSessionsList,
+                "sessionId", (Function<TrainingSession, Number>) TrainingSession::getId,
+                "sessionProgress", (Function<TrainingSession, Number>) TrainingSession::getProgress);
 
         HashMap<String, Integer> commandPercentage=trainingSessionService.findCountsOfCommandsUsed(theDog);
-        List<List<Object>> percentageData = new ArrayList<>();
-        List<Object> header = new ArrayList<>();
-        header.add("Command");
-        header.add("Percentage");
-        percentageData.add(header);
-
-        for(String command : commandPercentage.keySet()){
-            Integer percentage= commandPercentage.get(command);
-            List<Object> row = new ArrayList<>();
-            row.add(command);
-            row.add(percentage);
-            percentageData.add(row);
-        }
+        List<List<Object>> commandData=chartService.buildPieChartPercentageData(commandPercentage, "Command", "Percentage");
 
         HashMap<String, Integer> treatPercentage=trainingSessionService.findCountsOfTreats(theDog);
-        List<List<Object>> treatData = new ArrayList<>();
-        List<Object> headerTreats = new ArrayList<>();
-        headerTreats.add("Treats");
-        headerTreats.add("PercentageTreats");
-        treatData.add(headerTreats);
+        List<List<Object>> treatData=chartService.buildPieChartPercentageData(treatPercentage, "Treats", "Percentage");
 
-        for(String treat : treatPercentage.keySet()){
-            Integer treatPercent= treatPercentage.get(treat);
-            List<Object> row = new ArrayList<>();
-            row.add(treat);
-            row.add(treatPercent);
-            treatData.add(row);
-        }
-        model.addAttribute("chartData", chartData);
-        model.addAttribute("percentageData", percentageData);
+        model.addAttribute("trainingData", trainingData);
+        model.addAttribute("commandData", commandData);
         model.addAttribute("treatData", treatData);
         return "dog-profile";
     }
